@@ -35,6 +35,9 @@ const generateHint = () =>  {
 const mastermind = (guess) => {
   solution = 'abcd'; // Comment this out to generate a random solution
   // your code here
+  if(guess==solution){
+    console.log("You Guessed It!")
+  }
 }
 
 
