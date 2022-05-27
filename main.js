@@ -1,6 +1,7 @@
 'use strict';
 
 const assert = require('assert');
+const { getUnpackedSettings } = require('http2');
 const readline = require('readline');
 const rl = readline.createInterface({
   input: process.stdin,
@@ -28,7 +29,29 @@ const getRandomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-const generateHint = () =>  {
+const generateHint = (guess) =>  {
+  let guessArray=guess.split('')
+  let solutionArray=solution.split('')
+  // console.log(typeof solutionArray[0])
+  // console.log(guessArray+solutionArray)
+  let correctLetterLocations=0;
+  for(let i=0;i<guessArray.length;i++){
+    // console.log(solution[i]===guessArray[i])
+    if(solutionArray[i]===guessArray[i])
+    correctLetterLocations++;
+    solutionArray[i]=null;
+  }
+  let correctLetters=0;
+  for(let i=0;i<guessArray.length;i++){
+    let targetIndex=solutionArray.indexOf(guessArray[i]);
+    console.log(targetIndex)
+    if(targetIndex<-1){
+      correctLetters++;
+      solution[targetIndex]=null;
+    }
+  }
+  console.log(correctLetterLocations+"-"+correctLetters)
+
   // your code here
 }
 
@@ -37,6 +60,9 @@ const mastermind = (guess) => {
   // your code here
   if(guess==solution){
     console.log("You Guessed It!")
+  }
+  else{
+    generateHint(guess)
   }
 }
 
