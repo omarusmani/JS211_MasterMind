@@ -37,32 +37,36 @@ const generateHint = (guess) =>  {
   let correctLetterLocations=0;
   for(let i=0;i<guessArray.length;i++){
     // console.log(solution[i]===guessArray[i])
-    if(solutionArray[i]===guessArray[i])
+    if(solutionArray[i]===guessArray[i]){
     correctLetterLocations++;
     solutionArray[i]=null;
+    }
   }
+  // console.log(solutionArray)
   let correctLetters=0;
   for(let i=0;i<guessArray.length;i++){
     let targetIndex=solutionArray.indexOf(guessArray[i]);
-    console.log(targetIndex)
-    if(targetIndex<-1){
+    // console.log(targetIndex)
+    if(targetIndex>-1){
       correctLetters++;
-      solution[targetIndex]=null;
+      solutionArray[targetIndex]=null;
     }
   }
-  console.log(correctLetterLocations+"-"+correctLetters)
+  return correctLetterLocations+"-"+correctLetters
 
   // your code here
 }
 
 const mastermind = (guess) => {
-  solution = 'abcd'; // Comment this out to generate a random solution
+  // solution = 'abcd'; // Comment this out to generate a random solution
   // your code here
   if(guess==solution){
-    console.log("You Guessed It!")
+    return "You guessed it!"
   }
   else{
-    generateHint(guess)
+   let hint= generateHint(guess)
+   board.push(hint)
+
   }
 }
 
