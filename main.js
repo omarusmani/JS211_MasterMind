@@ -60,13 +60,19 @@ const generateHint = (guess) =>  {
 const mastermind = (guess) => {
   // solution = 'abcd'; // Comment this out to generate a random solution
   // your code here
-  if(guess==solution){
+  if(board.length<10){
+    if(guess==solution){
     return "You guessed it!"
+   }
+    else{
+    let hint= generateHint(guess)
+    board.push(hint)
+   }
   }
   else{
-   let hint= generateHint(guess)
-   board.push(hint)
-
+  console.log('You ran out of turns! The solution was ' + solution+". "+'Guess Again!')
+  board=[]
+  generateSolution()
   }
 }
 
